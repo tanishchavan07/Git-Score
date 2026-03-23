@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // ─── Centralized Axios Instance ──────────────────────────────────────────────
 const api = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: 'https://git-score.onrender.com',
   withCredentials: true,   // send JWT cookie with every request
 });
 
