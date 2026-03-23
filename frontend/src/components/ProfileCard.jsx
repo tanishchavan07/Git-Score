@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heart, Bookmark, ExternalLink, Users, Github } from 'lucide-react';
+import { Heart, Bookmark, ExternalLink } from 'lucide-react';
 import { toggleLike, toggleSave } from '../services/api';
 import toast from 'react-hot-toast';
 
