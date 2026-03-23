@@ -2,18 +2,13 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    const uri =
-      process.env.USE_CLOUD === "true"
-        ? process.env.MONGO_CLOUD
-        : process.env.MONGO_LOCAL;
+    if (!process.env.MONGO_URI) {
+      throw new Error("MONGO_URI not defined");
+    }
 
-    await mongoose.connect(uri);
+    await mongoose.connect(process.env.MONGO_URI);
 
-    console.log(
-      `MongoDB Connected: ${
-        process.env.USE_CLOUD === "true" ? "CLOUD 🌍" : "LOCAL 💻"
-      }`
-    );
+    console.log("MongoDB Connected 🌍");
   } catch (error) {
     console.error(error);
     process.exit(1);
