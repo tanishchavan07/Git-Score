@@ -14,7 +14,7 @@ connectDB();
 
 // middleware
 app.use(cors({
-  origin: "http://Localhost:3000",  // React dev server
+  origin: "https://git-score-sandy.vercel.app/",  // React dev server
   credentials: true,                // allow cookies
 }));
 app.use(express.json());
