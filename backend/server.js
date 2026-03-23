@@ -17,7 +17,9 @@ const allowedOrigins = [
   "http://localhost:3000",
   "https://git-score.vercel.app",
   "https://git-score-fggvmsdsm-tanishchavan06-3441s-projects.vercel.app",
-];
+  "https://git-score-sandy.vercel.app",
+  process.env.FRONTEND_URL, // From .env
+].filter(Boolean); // Remote false values if FRONTEND_URL is not set
 
 app.use(cors({
   origin: function (origin, callback) {
