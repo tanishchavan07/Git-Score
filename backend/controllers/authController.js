@@ -31,14 +31,12 @@ exports.registerUser = async (req, res) => {
     );
 
     // 🔥 set cookie
-    const isProd = process.env.NODE_ENV === "production" || process.env.USE_CLOUD === "true";
-    res.cookie("token", token, {
-      httpOnly: true,
-      path: "/",
-      secure: isProd,
-      sameSite: isProd ? "none" : "lax",
-    });
-
+  res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,        // MUST be true for HTTPS
+  sameSite: "none",    // MUST for cross-origin
+  path: "/",
+});
     res.status(201).json({
       message: "User registered successfully",
       user: { name: user.name, email: user.email },
@@ -70,15 +68,12 @@ exports.loginUser = async (req, res) => {
       { id: user._id },
       process.env.JWT_SECRET
     );
-
-    // 🔥 set cookie
-    const isProd = process.env.NODE_ENV === "production" || process.env.USE_CLOUD === "true";
-    res.cookie("token", token, {
-      httpOnly: true,
-      path: "/",
-      secure: isProd,
-      sameSite: isProd ? "none" : "lax",
-    });
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,        // MUST be true for HTTPS
+  sameSite: "none",    // MUST for cross-origin
+  path: "/",
+});
 
     res.json({
       message: "Login successful",
