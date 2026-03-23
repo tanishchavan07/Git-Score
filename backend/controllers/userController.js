@@ -67,10 +67,11 @@ exports.editProfile = async (req, res) => {
 // @access  Public (or Private)
 exports.logoutUser = (req, res) => {
   try {
+    const isProd = process.env.NODE_ENV === "production" || process.env.USE_CLOUD === "true";
     res.clearCookie("token", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: isProd,
+      sameSite: isProd ? "none" : "lax",
     });
 
     res.json({

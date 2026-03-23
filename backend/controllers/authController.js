@@ -31,9 +31,12 @@ exports.registerUser = async (req, res) => {
     );
 
     // 🔥 set cookie
+    const isProd = process.env.NODE_ENV === "production" || process.env.USE_CLOUD === "true";
     res.cookie("token", token, {
       httpOnly: true,
       path: "/",
+      secure: isProd,
+      sameSite: isProd ? "none" : "lax",
     });
 
     res.status(201).json({
@@ -69,9 +72,12 @@ exports.loginUser = async (req, res) => {
     );
 
     // 🔥 set cookie
+    const isProd = process.env.NODE_ENV === "production" || process.env.USE_CLOUD === "true";
     res.cookie("token", token, {
       httpOnly: true,
       path: "/",
+      secure: isProd,
+      sameSite: isProd ? "none" : "lax",
     });
 
     res.json({
